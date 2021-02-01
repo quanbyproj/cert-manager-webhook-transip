@@ -14,7 +14,7 @@ $ helm install cert-manager-webhook-transip --namespace=cert-manager ./deploy/tr
 Alternatively, you can use kubectl to deploy:
 
 ```shell script
-$ kubectl -n cert-manager apply -f https://raw.githubusercontent.com/robbietjuh/cert-manager-webhook-transip/master/deploy/recommended.yaml
+$ kubectl -n cert-manager apply -f https://raw.githubusercontent.com/quanbylab/cert-manager-webhook-transip/master/deploy/recommended.yaml
 ```
 
 Both methods will simply deploy the webhook container into your Kubernetes environment. After deployment, you'll have to configure the webhook to interface with your TransIP account.
@@ -31,7 +31,7 @@ kubectl -n cert-manager create secret generic transip-credentials --from-file=pr
 After saving your private key as a secret to the cluster, you'll have to configure the Issuer object. You can use the following as a template:
 
 ```yaml
-apiVersion: cert-manager.io/v1alpha2
+apiVersion: cert-manager.io/v1
 kind: Issuer
 metadata:
   name: le-staging
