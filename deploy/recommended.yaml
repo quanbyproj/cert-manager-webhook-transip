@@ -179,7 +179,7 @@ spec:
           secret:
             secretName: transip-webhook-tls
 ---
-apiVersion: apiregistration.k8s.io/v1beta1
+apiVersion: apiregistration.k8s.io/v1
 kind: APIService
 metadata:
   name: v1alpha1.cert-manager.webhook.transip
