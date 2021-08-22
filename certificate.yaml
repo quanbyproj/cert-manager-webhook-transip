@@ -1,13 +1,12 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: lan.quanby.nl
-  namespace: cert-manager
+  name: lab.quanby.nl
 spec:
-  secretName: lan.quanby.nl-tls
+  secretName: lab.quanby.nl-tls
   issuerRef:
     name: letsencrypt-staging
     kind: ClusterIssuer
   dnsNames:
-  - '*.lan.quanby.nl'
-  - lan.quanby.nl
+  - '*.lab.quanby.nl'
+  - lab.quanby.nl
