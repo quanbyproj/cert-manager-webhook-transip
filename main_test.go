@@ -6,7 +6,7 @@ import (
 
 	"github.com/jetstack/cert-manager/test/acme/dns"
 
-	"github.com/cert-manager/webhook-transip/transip"
+	"github.com/quanbylab/cert-manager-webhook-transip"
 )
 
 var (
@@ -25,6 +25,9 @@ func TestRunsSuite(t *testing.T) {
 		dns.SetManifestPath("testdata/transip"),
 		dns.SetBinariesPath("bin"),
 	)
+	//need to uncomment and  RunConformance delete runBasic and runExtended once https://github.com/jetstack/cert-manager/pull/4835 is merged
+	//fixture.RunConformance(t)
+	fixture.RunBasic(t)
+	fixture.RunExtended(t)
 
-	fixture.RunConformance(t)
 }

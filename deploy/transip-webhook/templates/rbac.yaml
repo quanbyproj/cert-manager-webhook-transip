@@ -127,3 +127,41 @@ subjects:
     kind: ServiceAccount
     name: {{ include "transip-webhook.fullname" . }}
     namespace: {{ .Values.certManager.namespace }}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: {{ include "transip-webhook.fullname" . }}:flowcontrol-solver
+  labels:
+    app: {{ include "transip-webhook.name" . }}
+    chart: {{ include "transip-webhook.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+rules:
+  - apiGroups:
+      - "flowcontrol.apiserver.k8s.io"
+    resources:
+      - 'prioritylevelconfigurations'
+      - 'flowschemas'
+    verbs:
+      - 'list'
+      - 'watch'
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: {{ include "transip-webhook.fullname" . }}:flowcontrol-solver
+  labels:
+    app: {{ include "transip-webhook.name" . }}
+    chart: {{ include "transip-webhook.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: {{ include "transip-webhook.fullname" . }}:flowcontrol-solver
+subjects:
+  - apiGroup: ""
+    kind: ServiceAccount
+    name: {{ include "transip-webhook.fullname" . }}
+    namespace: {{ .Release.Namespace | quote }}
