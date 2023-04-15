@@ -2,7 +2,7 @@ OS ?= $(shell go env GOOS)
 ARCH ?= $(shell go env GOARCH)
 
 IMAGE_NAME := "quanby/cert-manager-webhook-transip"
-IMAGE_TAG := "1.7.3"
+IMAGE_TAG := "1.11.1"
 
 OUT := $(shell pwd)/_out
 
