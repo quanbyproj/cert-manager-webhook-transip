@@ -1,0 +1,22 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-staging
+  namespace: cert-manager
+spec:
+  acme:
+    email: paul.reinking@quanby.nl
+    server: https://acme-staging-v02.api.letsencrypt.org/directory
+    privateKeySecretRef:
+      name: letsencrypt-staging-issuer-key
+    solvers:
+    - dns01:
+        webhook:
+          groupName: cert-manager.webhook.transip
+          solverName: transip
+          config:
+            accountName: preinking
+            ttl: 300
+            privateKeySecretRef:
+              name: transip-credentials
+              key: privateKey
